@@ -73,6 +73,7 @@ public class Labyrinth {
             }
 
             System.out.println("Getestete Position: " + tempRow + "/" + tempCol);
+            printMaze();
             Position tempPosition = new Position(tempRow, tempCol);
 
 
@@ -103,19 +104,7 @@ public class Labyrinth {
 
         int tempColumn = column-1;
 
-        if (tempColumn > 0) {
-
-            boolean bottomOkay = row + 3 < dimension
-                    && labyrinth[row + 1][tempColumn] == false && labyrinth[row + 2][tempColumn] == false && labyrinth[row + 3][tempColumn] == false;
-
-            boolean topOkay = row - 3 > 0
-                    && labyrinth[row - 1][tempColumn] == false && labyrinth[row - 2][tempColumn] == false && labyrinth[row - 3][tempColumn] == false;
-
-            return bottomOkay || topOkay;
-        }
-        else {
-            return false;
-        }
+        return false;
 
 
     }
