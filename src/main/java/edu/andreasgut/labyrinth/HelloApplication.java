@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
         LabyrinthController controller = fxmlLoader.getController();
-        Labyrinth labyrinth = new Labyrinth(10);
+        Labyrinth labyrinth = new Labyrinth(3);
         controller.setLabyrinth(labyrinth);
 
     }

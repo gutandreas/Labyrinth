@@ -76,7 +76,7 @@ public class Labyrinth {
             Position tempPosition = new Position(tempRow, tempCol);
 
 
-            if (tempRow >= 0 && tempRow < dimension && tempCol >= 0 && tempCol < dimension && countNeighbours(tempPosition) == 1) {
+            if (tempRow >= 0 && tempRow < dimension && tempCol >= 0 && tempCol < dimension && !labyrinth[tempRow][tempCol] && countNeighbours(tempPosition) == 1) {
                 labyrinth[tempRow][tempCol] = true;
                 neighbourFound = true;
                 getNextPositionRecursive(tempRow, tempCol);
@@ -89,7 +89,7 @@ public class Labyrinth {
     private void generateWrongWays(int dimension){
         Random random = new Random();
 
-        for (int count = 0; count < 1000; count++){
+        for (int count = 0; count < Math.pow(dimension, 3); count++){
             Position position = new Position(random.nextInt(dimension), random.nextInt(dimension));
 
             if (countNeighbours(position) == 1){
