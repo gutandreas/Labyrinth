@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class HelloApplication extends Application {
         LabyrinthController controller = fxmlLoader.getController();
         Labyrinth labyrinth = new Labyrinth(30);
         controller.setLabyrinth(labyrinth);
+        controller.addPositionToWay(new Position(0, 1));
 
     }
 
