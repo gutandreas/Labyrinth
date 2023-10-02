@@ -52,13 +52,11 @@ public class LabyrinthController implements Initializable {
 
         Rectangle startRectangle = new Rectangle(rectangleHeight, rectangleWidth);
         startRectangle.setFill(Color.LIGHTCORAL);
-        labyrinthGrid.add(startRectangle,  labyrinth.getStartCol(), labyrinth.getStartRow()+1);
-
-        System.out.println(labyrinth.getEndCol());
+        labyrinthGrid.add(startRectangle,  labyrinth.getStartPosition().getColumn(), labyrinth.getStartPosition().getRow()+1);
 
         Rectangle goalRectangle = new Rectangle(rectangleHeight, rectangleWidth);
         goalRectangle.setFill(Color.LIGHTGREEN);
-        labyrinthGrid.add(goalRectangle,  labyrinth.getEndCol()+2, labyrinth.getEndRow()+1);
+        labyrinthGrid.add(goalRectangle,  labyrinth.getGoalPosition().getColumn()+2, labyrinth.getGoalPosition().getRow()+1);
 
 
 

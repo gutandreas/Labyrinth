@@ -5,17 +5,15 @@ import java.util.Random;
 public class Labyrinth {
 
     int dimension;
-    int level;
     boolean[][] labyrinth;
-    int startRow;
-    int startCol;
-    int endRow;
-    int endCol;
+    Position startPosition;
+    Position goalPosition;
 
     public Labyrinth(int dimension) {
         this.dimension = dimension;
         labyrinth = new boolean[dimension][dimension];
         generateLabyrinth(dimension);
+        //generateWrongWays(dimension);
         printMaze();
 
     }
@@ -26,8 +24,7 @@ public class Labyrinth {
         int tempRow = random.nextInt(dimension);
         int tempCol = 0;
 
-        startRow = tempRow;
-        startCol = tempCol;
+        startPosition = new Position(tempRow, tempCol);
 
         labyrinth[tempRow][tempCol] = true;
         getNextPositionRecursive(tempRow, tempCol);
@@ -37,8 +34,7 @@ public class Labyrinth {
     public void getNextPositionRecursive(int row, int col){
 
         if (col == dimension-1){
-            endRow = row;
-            endCol = col;
+            goalPosition = new Position(row, col);
             return;
         }
 
@@ -71,8 +67,9 @@ public class Labyrinth {
             }
 
             System.out.println("Getestete Position: " + tempRow + "/" + tempCol);
+            Position tempPosition = new Position(tempRow, tempCol);
 
-            if (tempRow >= 0 && tempRow < dimension && tempCol >= 0 && tempCol < dimension && countNeighbours(tempRow, tempCol) == 1 ) {
+            if (tempRow >= 0 && tempRow < dimension && tempCol >= 0 && tempCol < dimension && countNeighbours(tempPosition) == 1 ) {
                 labyrinth[tempRow][tempCol] = true;
                 neighbourFound = true;
                 getNextPositionRecursive(tempRow, tempCol);
@@ -82,15 +79,29 @@ public class Labyrinth {
 
     }
 
-    private int countNeighbours(int row, int col){
+    private void generateWrongWays(int dimension){
+        Random random = new Random();
+
+        for (int count = 0; count < 1000; count++){
+            Position position = new Position(random.nextInt(dimension), random.nextInt(dimension));
+
+            if (countNeighbours(position) == 1){
+                labyrinth[position.getRow()] [position.getColumn()] = true;
+            }
+        }
+
+    }
+
+    private int countNeighbours(Position position){
         int neighbours = 0;
 
         int[] i = {1, -1, 0, 0};
         int[] j = {0, 0, 1, -1};
 
         for (int counter = 0; counter < 4; counter++){
-            if (row+i[counter] >= 0 && row+i[counter] < dimension && col+j[counter] >= 0 && col+j[counter] < dimension)
-                if (labyrinth[row+i[counter]] [col+j[counter]]) {
+            if (position.getRow()+i[counter] >= 0 && position.getRow()+i[counter] < dimension
+                    && position.getColumn()+j[counter] >= 0 && position.getColumn()+j[counter] < dimension)
+                if (labyrinth[position.getRow()+i[counter]] [position.getColumn()+j[counter]]) {
                     neighbours++;
                 }
         }
@@ -118,19 +129,12 @@ public class Labyrinth {
         return labyrinth;
     }
 
-    public int getStartRow() {
-        return startRow;
+
+    public Position getStartPosition() {
+        return startPosition;
     }
 
-    public int getStartCol() {
-        return startCol;
-    }
-
-    public int getEndRow() {
-        return endRow;
-    }
-
-    public int getEndCol() {
-        return endCol;
+    public Position getGoalPosition() {
+        return goalPosition;
     }
 }
