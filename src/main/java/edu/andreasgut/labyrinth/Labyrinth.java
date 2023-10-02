@@ -13,7 +13,7 @@ public class Labyrinth {
         this.dimension = dimension;
         labyrinth = new boolean[dimension][dimension];
         generateLabyrinth(dimension);
-        //generateWrongWays(dimension);
+        generateWrongWays(dimension);
         printMaze();
 
     }
@@ -51,6 +51,12 @@ public class Labyrinth {
             Random random = new Random();
             int direction = random.nextInt(4);
 
+            if (direction == 3){
+                if (!checkBackwardDirection(tempRow, tempCol)){
+                    direction = 0;
+                }
+            }
+
             switch (direction) {
                 case 0:
                     tempRow++;
@@ -69,7 +75,8 @@ public class Labyrinth {
             System.out.println("Getestete Position: " + tempRow + "/" + tempCol);
             Position tempPosition = new Position(tempRow, tempCol);
 
-            if (tempRow >= 0 && tempRow < dimension && tempCol >= 0 && tempCol < dimension && countNeighbours(tempPosition) == 1 ) {
+
+            if (tempRow >= 0 && tempRow < dimension && tempCol >= 0 && tempCol < dimension && countNeighbours(tempPosition) == 1) {
                 labyrinth[tempRow][tempCol] = true;
                 neighbourFound = true;
                 getNextPositionRecursive(tempRow, tempCol);
@@ -89,6 +96,27 @@ public class Labyrinth {
                 labyrinth[position.getRow()] [position.getColumn()] = true;
             }
         }
+
+    }
+
+    private boolean checkBackwardDirection(int row, int column){
+
+        int tempColumn = column-1;
+
+        if (tempColumn > 0) {
+
+            boolean bottomOkay = row + 3 < dimension
+                    && labyrinth[row + 1][tempColumn] == false && labyrinth[row + 2][tempColumn] == false && labyrinth[row + 3][tempColumn] == false;
+
+            boolean topOkay = row - 3 > 0
+                    && labyrinth[row - 1][tempColumn] == false && labyrinth[row - 2][tempColumn] == false && labyrinth[row - 3][tempColumn] == false;
+
+            return bottomOkay || topOkay;
+        }
+        else {
+            return false;
+        }
+
 
     }
 
