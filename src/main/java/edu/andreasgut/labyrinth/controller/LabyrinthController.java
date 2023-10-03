@@ -30,8 +30,9 @@ public class LabyrinthController implements Initializable {
         int numRows = labyrinthArray[0].length;
         int numCols = labyrinthArray.length;
         Scene scene = labyrinthGrid.getScene();
-        int rectangleHeight = (int) Math.ceil(scene.getHeight()/(numRows+2));
-        int rectangleWidth = (int) Math.ceil(scene.getWidth()/(numCols+2));
+        double rectangleHeight = scene.getHeight()/(numRows+2);
+        double rectangleWidth = scene.getWidth()/(numCols+2);
+
 
         // Rand oben und unten
         for (int col = 0; col <= numCols; col++) {
