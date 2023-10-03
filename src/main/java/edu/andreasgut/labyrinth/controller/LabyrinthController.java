@@ -2,10 +2,14 @@ package edu.andreasgut.labyrinth.controller;
 
 import edu.andreasgut.labyrinth.core.Labyrinth;
 import edu.andreasgut.labyrinth.core.Position;
+import edu.andreasgut.labyrinth.core.StandardSolver;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -18,6 +22,15 @@ public class LabyrinthController implements Initializable {
 
     @FXML
     private GridPane labyrinthGrid;
+    @FXML
+    private BorderPane borderPane;
+    @FXML
+    private Label dimensionLabel;
+    @FXML
+    private Slider dimensionSlider;
+
+    Labyrinth labyrinth;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -26,12 +39,13 @@ public class LabyrinthController implements Initializable {
 
     public void setLabyrinth(Labyrinth labyrinth){
         labyrinthGrid.setGridLinesVisible(false);
+        this.labyrinth = labyrinth;
         boolean[][] labyrinthArray = labyrinth.getLabyrinth();
         int numRows = labyrinthArray[0].length;
         int numCols = labyrinthArray.length;
         Scene scene = labyrinthGrid.getScene();
-        double rectangleHeight = scene.getHeight()/(numRows+2);
-        double rectangleWidth = scene.getWidth()/(numCols+2);
+        double rectangleHeight = 600/(numRows+2);
+        double rectangleWidth = 600/(numCols+2);
 
 
         // Rand oben und unten
@@ -99,6 +113,28 @@ public class LabyrinthController implements Initializable {
             r.setFill(Color.RED);
         }
     }
+
+    @FXML
+    public void showSolversSolution(){
+        LinkedList<Position> solution = StandardSolver.solve(labyrinth.getLabyrinth(), labyrinth.getStartPosition(), labyrinth.getGoalPosition());
+        checkSolution(solution);
+
+    }
+
+    @FXML
+    public void loadNewLabyrinth(){
+        labyrinthGrid.getChildren().clear();
+        Labyrinth labyrinth = new Labyrinth((int) dimensionSlider.getValue());
+        setLabyrinth(labyrinth);
+    }
+
+    @FXML
+    public void changeDimensionLabel(){
+        System.out.println(dimensionSlider.getValue()+"");
+        dimensionLabel.setText(dimensionSlider.getValue()+"");
+    }
+
+
 
 
 

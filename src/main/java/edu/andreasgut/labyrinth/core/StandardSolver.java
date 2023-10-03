@@ -2,9 +2,7 @@ package edu.andreasgut.labyrinth.core;
 
 import java.util.LinkedList;
 
-import java.util.LinkedList;
-
-public class Solver {
+public class StandardSolver {
 
     static LinkedList<Position> solution;
 
