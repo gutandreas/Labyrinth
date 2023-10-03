@@ -16,10 +16,10 @@
       <bottom>
          <HBox BorderPane.alignment="CENTER">
             <children>
-               <HBox prefHeight="100.0" prefWidth="200.0">
+               <HBox>
                   <children>
                      <Label text="Labyrinthgrösse:" />
-                     <Slider fx:id="dimensionSlider" blockIncrement="1.0" min="5.0" minorTickCount="1" onMouseDragged="#changeDimensionLabel" snapToTicks="true" value="50.0" />
+                     <Slider fx:id="dimensionSlider" blockIncrement="1.0" majorTickUnit="5.0" max="75.0" min="5.0" minorTickCount="1" onMouseDragged="#changeDimensionLabel" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" />
                      <Label fx:id="dimensionLabel" onDragDetected="#changeDimensionLabel" text="50" />
                      <Button mnemonicParsing="false" onAction="#loadNewLabyrinth" text="Lade neues Labyrinth" />
                   </children>
