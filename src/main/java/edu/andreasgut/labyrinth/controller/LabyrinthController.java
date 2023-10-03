@@ -1,7 +1,7 @@
 package edu.andreasgut.labyrinth.controller;
 
-import edu.andreasgut.labyrinth.Labyrinth;
-import edu.andreasgut.labyrinth.Position;
+import edu.andreasgut.labyrinth.core.Labyrinth;
+import edu.andreasgut.labyrinth.core.Position;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class LabyrinthController implements Initializable {
@@ -80,22 +81,27 @@ public class LabyrinthController implements Initializable {
     }
 
 
-    public void addPositionToWay(Position position){
-        if (((Rectangle) getChildFromGridPane(labyrinthGrid, position.getRow()+1, position.getColumn()+1 )).getFill().equals(Color.WHITE)){
-            setPositionColor(position, Color.LIGHTBLUE);
+    public void checkSolution(LinkedList<Position> solution){
+        for (Position p : solution){
+            colorPosition(p, Color.LIGHTBLUE);
         }
     }
 
-    private void setPositionColor(Position position, Color color){
+
+    private void colorPosition(Position position, Color color){
 
         Rectangle r = (Rectangle) getChildFromGridPane(labyrinthGrid, position.getRow()+1, position.getColumn()+1 );
-        r.setFill(color);
-
-
-
+        if (r.getFill().equals(Color.WHITE)){
+            r.setFill(color);
+        }
+        else {
+            r.setFill(Color.RED);
+        }
     }
 
-    public Node getChildFromGridPane(GridPane gridPane, int rowIndex, int colIndex) {
+
+
+    private Node getChildFromGridPane(GridPane gridPane, int rowIndex, int colIndex) {
         Node result = null;
 
         for (Node node : gridPane.getChildren()) {

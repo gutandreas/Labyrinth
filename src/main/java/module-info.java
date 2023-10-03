@@ -7,5 +7,7 @@ module edu.andreasgut.labyrinth {
     opens edu.andreasgut.labyrinth.controller to javafx.fxml;
     exports edu.andreasgut.labyrinth;
     exports edu.andreasgut.labyrinth.controller;
+    exports edu.andreasgut.labyrinth.core;
+    opens edu.andreasgut.labyrinth.core to javafx.fxml;
 
 }

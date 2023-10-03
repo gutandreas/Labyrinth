@@ -1,13 +1,15 @@
-package edu.andreasgut.labyrinth;
+package edu.andreasgut.labyrinth.core;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Labyrinth {
 
-    int dimension;
-    boolean[][] labyrinth;
-    Position startPosition;
-    Position goalPosition;
+    private int dimension;
+    private boolean[][] labyrinth;
+    private Position startPosition;
+    private Position goalPosition;
+    private LinkedList<Position> solution = new LinkedList<>();
 
     public Labyrinth(int dimension) {
         this.dimension = dimension;
@@ -25,6 +27,7 @@ public class Labyrinth {
         int tempCol = 0;
 
         startPosition = new Position(tempRow, tempCol);
+        solution.add(startPosition);
 
         labyrinth[tempRow][tempCol] = true;
         getNextPositionRecursive(tempRow, tempCol);
@@ -73,12 +76,12 @@ public class Labyrinth {
             }
 
             System.out.println("Getestete Position: " + tempRow + "/" + tempCol);
-            printMaze();
             Position tempPosition = new Position(tempRow, tempCol);
 
 
             if (tempRow >= 0 && tempRow < dimension && tempCol >= 0 && tempCol < dimension && !labyrinth[tempRow][tempCol] && countNeighbours(tempPosition) == 1) {
                 labyrinth[tempRow][tempCol] = true;
+                solution.add(tempPosition);
                 neighbourFound = true;
                 getNextPositionRecursive(tempRow, tempCol);
             }
@@ -103,6 +106,8 @@ public class Labyrinth {
     private boolean checkBackwardDirection(int row, int column){
 
         int tempColumn = column-1;
+
+        // Hier müsste eine Regel gefunden werden, wann die Richtung zurück eingeschlagen werden darf und wann nicht.
 
         return false;
 
@@ -153,5 +158,9 @@ public class Labyrinth {
 
     public Position getGoalPosition() {
         return goalPosition;
+    }
+
+    public LinkedList<Position> getSolution() {
+        return solution;
     }
 }

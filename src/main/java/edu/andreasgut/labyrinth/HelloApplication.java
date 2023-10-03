@@ -1,12 +1,12 @@
 package edu.andreasgut.labyrinth;
 
 import edu.andreasgut.labyrinth.controller.LabyrinthController;
+import edu.andreasgut.labyrinth.core.Labyrinth;
+import edu.andreasgut.labyrinth.core.Position;
+import edu.andreasgut.labyrinth.core.Solver;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,7 +24,12 @@ public class HelloApplication extends Application {
         LabyrinthController controller = fxmlLoader.getController();
         Labyrinth labyrinth = new Labyrinth(30);
         controller.setLabyrinth(labyrinth);
-        controller.addPositionToWay(new Position(0, 1));
+        controller.checkSolution(Solver.solve(labyrinth.getLabyrinth(), labyrinth.getStartPosition(), labyrinth.getGoalPosition()));
+
+        for (Position p : Solver.getSolution()){
+            System.out.println(p);
+        }
+
 
     }
 
