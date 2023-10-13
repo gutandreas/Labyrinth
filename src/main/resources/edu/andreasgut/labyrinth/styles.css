@@ -1,0 +1,65 @@
+/* Dunkelgrauer Hintergrund für die Szene */
+.root {
+    -fx-background-color: #666;
+    -fx-padding: 10;
+}
+
+
+/* Silberne Buttons */
+.button {
+    -fx-background-color: #aabbcc ;
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+}
+
+
+.button:hover {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.slider {
+    -fx-font-size: 14px; /* Schriftgröße ändern */
+    -fx-text-fill: red; /* Textfarbe ändern */
+}
+
+#title {
+    -fx-font-size: 30;
+}
+
+
+
+
+#sliderHBox {
+    -fx-padding: 10;
+    -fx-spacing: 5;
+}
+
+#buttonHBox {
+    -fx-padding: 10;
+    -fx-spacing: 5;
+}
+
+
+/* Container mit Abständen und Schatten */
+.container {
+    -fx-background-color: #fff;
+    -fx-padding: 20;
+    -fx-border-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 0);
+    -fx-alignment: center;
+}
+
+
+
+/* Moderne Schrift */
+h1, h2, p {
+    -fx-text-fill: #333;
+}

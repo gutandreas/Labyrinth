@@ -4,37 +4,39 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.andreasgut.labyrinth.controller.LabyrinthController">
-   <BorderPane>
-      <center>
-          <GridPane fx:id="labyrinthGrid" prefHeight="139.0" prefWidth="595.0" BorderPane.alignment="CENTER" />
-      </center>
-      <bottom>
-         <HBox BorderPane.alignment="CENTER">
+<AnchorPane snapToPixel="false" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.andreasgut.labyrinth.controller.LabyrinthController">
+   <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+         <VBox alignment="CENTER">
             <children>
-               <HBox>
+               <Label fx:id="title" text="Labyrinth" />
+               <Label text="Löse das untenstehende Labyrinth mit deiner eigenen Methode oder mit der vordefinierten Methode" />
+            </children>
+         </VBox>
+          <GridPane fx:id="labyrinthGrid" alignment="CENTER" />
+         <HBox alignment="CENTER">
+            <children>
+               <HBox fx:id="sliderHBox">
                   <children>
                      <Label text="Labyrinthgrösse:" />
-                     <Slider fx:id="dimensionSlider" blockIncrement="1.0" majorTickUnit="5.0" max="75.0" min="5.0" minorTickCount="1" onMouseDragged="#changeDimensionLabel" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" />
-                     <Label fx:id="dimensionLabel" onDragDetected="#changeDimensionLabel" text="50" />
+                     <Slider fx:id="dimensionSlider" blockIncrement="1.0" majorTickUnit="5.0" max="75.0" min="5.0" minorTickCount="1" onMouseDragged="#changeDimensionLabel" showTickMarks="true" snapToTicks="true" value="50.0" />
+                     <Label fx:id="dimensionLabel" minWidth="20" onDragDetected="#changeDimensionLabel" text="50" />
                      <Button mnemonicParsing="false" onAction="#loadNewLabyrinth" text="Lade neues Labyrinth" />
                   </children>
                </HBox>
-                <Button onAction="#showSolversSolution" text="Zeige Lösung" />
-               <Button mnemonicParsing="false" text="Teste meine Lösung" />
-               <HBox prefHeight="100.0" prefWidth="200.0">
+               <HBox fx:id="buttonHBox">
                   <children>
-                     <Label text="Tempo" />
-                     <Slider />
+                      <Button onAction="#showSolversSolution" text="Zeige Lösung" />
+                     <Button mnemonicParsing="false" onAction="#showCustomSolution" text="Teste meine Lösung" />
                   </children>
                </HBox>
             </children>
          </HBox>
-      </bottom>
-   </BorderPane>
+      </children>
+   </VBox>
 
 </AnchorPane>

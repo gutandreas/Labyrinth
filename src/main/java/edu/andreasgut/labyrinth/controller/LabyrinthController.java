@@ -1,5 +1,6 @@
 package edu.andreasgut.labyrinth.controller;
 
+import edu.andreasgut.labyrinth.core.CustomSolver;
 import edu.andreasgut.labyrinth.core.Labyrinth;
 import edu.andreasgut.labyrinth.core.Position;
 import edu.andreasgut.labyrinth.core.StandardSolver;
@@ -13,7 +14,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -118,8 +118,16 @@ public class LabyrinthController implements Initializable {
     public void showSolversSolution(){
         LinkedList<Position> solution = StandardSolver.solve(labyrinth.getLabyrinth(), labyrinth.getStartPosition(), labyrinth.getGoalPosition());
         checkSolution(solution);
-
     }
+
+    @FXML
+    public void showCustomSolution(){
+        LinkedList<Position> solution = CustomSolver.solve(labyrinth.getLabyrinth(), labyrinth.getStartPosition(), labyrinth.getGoalPosition());
+        checkSolution(solution);
+    }
+
+
+
 
     @FXML
     public void loadNewLabyrinth(){
