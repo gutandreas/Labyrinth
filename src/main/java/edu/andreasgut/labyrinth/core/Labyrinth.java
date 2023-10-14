@@ -52,13 +52,8 @@ public class Labyrinth {
             tempCol = col;
 
             Random random = new Random();
-            int direction = random.nextInt(4);
+            int direction = random.nextInt(3);
 
-            if (direction == 3){
-                if (!checkBackwardDirection(tempRow, tempCol)){
-                    direction = 0;
-                }
-            }
 
             switch (direction) {
                 case 0:
@@ -69,9 +64,6 @@ public class Labyrinth {
                     break;
                 case 2:
                     tempRow--;
-                    break;
-                case 3:
-                    tempCol--;
                     break;
             }
 
@@ -100,17 +92,6 @@ public class Labyrinth {
                 labyrinth[position.getRow()] [position.getColumn()] = true;
             }
         }
-
-    }
-
-    private boolean checkBackwardDirection(int row, int column){
-
-        int tempColumn = column-1;
-
-        // Hier müsste eine Regel gefunden werden, wann die Richtung zurück eingeschlagen werden darf und wann nicht.
-
-        return false;
-
 
     }
 

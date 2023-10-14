@@ -30,8 +30,8 @@
                </HBox>
                <HBox fx:id="buttonHBox">
                   <children>
-                      <Button onAction="#showSolversSolution" text="Zeige Lösung" />
-                     <Button mnemonicParsing="false" onAction="#showCustomSolution" text="Teste meine Lösung" />
+                      <Button fx:id="standardButton" onAction="#showSolversSolution" text="Zeige Lösung" />
+                     <Button fx:id="customButton" mnemonicParsing="false" onAction="#showCustomSolution" text="Teste meine Lösung" />
                   </children>
                </HBox>
             </children>

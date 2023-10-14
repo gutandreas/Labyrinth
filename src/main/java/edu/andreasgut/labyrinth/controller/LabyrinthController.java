@@ -4,10 +4,12 @@ import edu.andreasgut.labyrinth.core.CustomSolver;
 import edu.andreasgut.labyrinth.core.Labyrinth;
 import edu.andreasgut.labyrinth.core.Position;
 import edu.andreasgut.labyrinth.core.StandardSolver;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
@@ -28,6 +30,10 @@ public class LabyrinthController implements Initializable {
     private Label dimensionLabel;
     @FXML
     private Slider dimensionSlider;
+    @FXML
+    private Button standardButton;
+    @FXML
+    private Button customButton;
 
     Labyrinth labyrinth;
 
@@ -114,19 +120,47 @@ public class LabyrinthController implements Initializable {
         }
     }
 
+    private void resetColor(){
+
+        boolean[][] labyrinthArray = labyrinth.getLabyrinth();
+        int numRows = labyrinthArray[0].length;
+        int numCols = labyrinthArray.length;
+
+
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                Rectangle r = (Rectangle) getChildFromGridPane(labyrinthGrid, row+1, col+1);
+                if (!(r.getFill().equals(Color.WHITE) || r.getFill().equals(Color.BLACK))){
+                    if (labyrinth.getLabyrinth()[row][col]){
+                        r.setFill(Color.WHITE);
+                    }
+                    else {
+                        r.setFill(Color.BLACK);
+                    }
+                }
+            }
+        }
+
+    }
+
     @FXML
     public void showSolversSolution(){
+        resetColor();
         LinkedList<Position> solution = StandardSolver.solve(labyrinth.getLabyrinth(), labyrinth.getStartPosition(), labyrinth.getGoalPosition());
         checkSolution(solution);
+        standardButton.setDisable(true);
+        customButton.setDisable(false);
+
     }
 
     @FXML
     public void showCustomSolution(){
+        resetColor();
         LinkedList<Position> solution = CustomSolver.solve(labyrinth.getLabyrinth(), labyrinth.getStartPosition(), labyrinth.getGoalPosition());
         checkSolution(solution);
+        customButton.setDisable(true);
+        standardButton.setDisable(false);
     }
-
-
 
 
     @FXML
@@ -134,6 +168,8 @@ public class LabyrinthController implements Initializable {
         labyrinthGrid.getChildren().clear();
         Labyrinth labyrinth = new Labyrinth((int) dimensionSlider.getValue());
         setLabyrinth(labyrinth);
+        customButton.setDisable(false);
+        standardButton.setDisable(false);
     }
 
     @FXML
