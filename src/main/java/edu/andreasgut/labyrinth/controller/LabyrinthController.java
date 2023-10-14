@@ -174,7 +174,6 @@ public class LabyrinthController implements Initializable {
 
     @FXML
     public void changeDimensionLabel(){
-        System.out.println((int) dimensionSlider.getValue()+"");
         String value = (int) dimensionSlider.getValue() + "";
         dimensionLabel.setText(value);
     }

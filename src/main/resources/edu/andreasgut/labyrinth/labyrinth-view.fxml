@@ -22,9 +22,9 @@
             <children>
                <HBox fx:id="sliderHBox">
                   <children>
-                     <Label text="Labyrinthgrösse:" />
-                     <Slider fx:id="dimensionSlider" blockIncrement="1.0" majorTickUnit="5.0" max="75.0" min="5.0" minorTickCount="1" onMouseDragged="#changeDimensionLabel" showTickMarks="true" snapToTicks="true" value="50.0" />
-                     <Label fx:id="dimensionLabel" minWidth="20" onDragDetected="#changeDimensionLabel" text="50" />
+                     <Label text="Grösse:" />
+                     <Slider fx:id="dimensionSlider" blockIncrement="1.0" majorTickUnit="5.0" max="75.0" min="5.0" minorTickCount="1" onMouseClicked="#changeDimensionLabel" onMouseDragged="#changeDimensionLabel" showTickMarks="true" snapToTicks="true" value="50.0" />
+                     <Label fx:id="dimensionLabel" minWidth="20" onDragDetected="#changeDimensionLabel" onMousePressed="#changeDimensionLabel" text="50" />
                      <Button mnemonicParsing="false" onAction="#loadNewLabyrinth" text="Lade neues Labyrinth" />
                   </children>
                </HBox>

@@ -17,7 +17,7 @@ public class LabyrinthApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(LabyrinthApplication.class.getResource("labyrinth-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 800);
         stage.sizeToScene();
-        stage.setTitle("Labyrinth!");
+        stage.setTitle("Algorithmus zur Tiefensuche am Beispiel des Labyrinths");
         stage.setScene(scene);
         LabyrinthController controller = fxmlLoader.getController();
         Labyrinth labyrinth = new Labyrinth(50);

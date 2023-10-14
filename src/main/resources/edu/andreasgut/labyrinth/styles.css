@@ -1,11 +1,9 @@
-/* Dunkelgrauer Hintergrund für die Szene */
 .root {
     -fx-background-color: #666;
     -fx-padding: 10;
 }
 
 
-/* Silberne Buttons */
 .button {
     -fx-background-color: #aabbcc ;
     -fx-padding: 10;
@@ -40,6 +38,7 @@
 #sliderHBox {
     -fx-padding: 10;
     -fx-spacing: 5;
+    -fx-alignment: CENTER;
 }
 
 #buttonHBox {
